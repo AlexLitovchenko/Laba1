@@ -43,6 +43,15 @@ func Login(email, password string) (models.AccessToken, error) {
 		return models.AccessToken{}, fmt.Errorf("wrong password")
 	}
 
+	oldAccess, err := tokenRepo.Get(customer.ID)
+	if err != nil {
+		return models.AccessToken{}, err
+	}
+
+	if oldAccess != nil {
+		return *oldAccess, nil
+	}
+
 	token, err := generateToken(email)
 	if err != nil {
 		return models.AccessToken{}, err

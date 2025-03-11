@@ -36,6 +36,18 @@ func (self *AccessTokenRepo) Add(token AccessToken) error {
 	return nil
 }
 
+func (self *AccessTokenRepo) Get(customerId uuid.UUID) (*AccessToken, error) {
+	var access *AccessToken
+	req := self.GetDb().First(&access).Where("customer_id = ?", customerId)
+	if req.Error != nil {
+		if req.Error == gorm.ErrRecordNotFound {
+			return nil, nil
+		}
+		return nil, req.Error
+	}
+	return access, nil
+}
+
 func (self *AccessTokenRepo) Find(token string) (bool, error) {
 	var access AccessToken
 	req := self.GetDb().First(&access).Where("token = ?", token)

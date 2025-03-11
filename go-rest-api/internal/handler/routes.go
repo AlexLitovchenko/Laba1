@@ -6,12 +6,14 @@ import (
 	"lab1/go-rest-api/internal/handler/api/product"
 	"lab1/go-rest-api/internal/handler/middleware"
 
+	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 )
 
 // SetupRoutes регистрирует маршруты и возвращает роутер
 func SetupRoutes() *gin.Engine {
 	r := gin.Default()
+	r.Use(cors.Default())
 
 	// Регистрация обработчиков
 	r.POST("/register", auth.Register)
