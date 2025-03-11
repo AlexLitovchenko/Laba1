@@ -1,0 +1,51 @@
+@startuml
+
+class Customer {
+    + ID : UUID
+    + CreatedAt : timestamp
+    + Phone : int
+    + Name : string
+    + LastName : string
+    + Email : string
+    + IsBlocked : bool
+}
+
+class AccessToken {
+    + ID : UUID
+    + CustomerID : UUID
+    + Token : string
+    + IsActive : bool
+    + CreatedAt : timestamp
+    + UpdatedAt : timestamp
+}
+
+class OrderCart {
+    + ID : UUID
+    + CustomerID : UUID
+    + CreatedAt : timestamp
+    + UpdatedAt : timestamp
+}
+
+class OrderCartItem {
+    + ID : UUID
+    + OrderCartID : UUID
+    + ProductID : UUID
+    + Quantity : int
+    + CreatedAt : timestamp
+    + UpdatedAt : timestamp
+}
+
+class Product {
+    + ID : UUID
+    + Title : string
+    + Description : string
+    + Price : int
+}
+
+
+Customer "1" *-- "many" OrderCart 
+Customer ||--|| AccessToken 
+OrderCart "1" *-- "many" OrderCartItem 
+Product  ||--|| "many" OrderCartItem 
+
+@enduml
