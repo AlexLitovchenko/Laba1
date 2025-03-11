@@ -3,11 +3,9 @@
 class Customer {
     + ID : UUID
     + CreatedAt : timestamp
-    + Phone : int
     + Name : string
     + LastName : string
     + Email : string
-    + IsBlocked : bool
 }
 
 class AccessToken {
