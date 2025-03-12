@@ -12,7 +12,7 @@ import (
 type OrderCartItem struct {
 	ID          uuid.UUID `gorm:"type:uuid;default:gen_random_uuid();primaryKey"`
 	OrderCartID uuid.UUID `gorm:"type:uuid;not null;index"`
-	ProductID   uuid.UUID `gorm:"type:uuid;uniqueIndex;not null"` // Уникальный индекс для 1:1 связи
+	ProductID   uuid.UUID `gorm:"type:uuid;not null"`
 	Quantity    int       `gorm:"not null"`
 	CreatedAt   time.Time `gorm:"not null"`
 	UpdatedAt   time.Time `gorm:"not null"`

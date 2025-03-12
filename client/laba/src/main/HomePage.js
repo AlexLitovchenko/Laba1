@@ -1,20 +1,18 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+// src/pages/HomePage.js
 
-function HomePage() {
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
+
+const HomePage = () => {
+  const navigate = useNavigate();
+
   return (
     <div>
-      <h2>Добро пожаловать на главную страницу!</h2>
-      <div>
-        <Link to="/products">
-          <button>Продукты</button>
-        </Link>
-        <Link to="/cart">
-          <button>Корзина</button>
-        </Link>
-      </div>
+      <h2>Добро пожаловать!</h2>
+      <button onClick={() => navigate('/products')}>Продукты</button>
+      <button onClick={() => navigate('/cart')}>Корзина</button>
     </div>
   );
-}
+};
 
 export default HomePage;
